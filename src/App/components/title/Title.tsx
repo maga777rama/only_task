@@ -4,8 +4,7 @@ import AccentLine from "~public/staticFiles/accentLine.svg";
 export const Title = () => {
     return (
         <div className={styles.container}>
-            <AccentLine />
-
+            {__PLATFORM__ === "desktop" && <AccentLine />}
             <span className={styles.title}>Исторические даты</span>
         </div>
     );

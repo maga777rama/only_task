@@ -5,8 +5,11 @@
     position: absolute;
     bottom: 104px;
     width: 1280px;
-    margin: 0 80px;
+    margin: 0 20px;
     //border: 1px solid black;
+    @if $PLATFORM == "mobile" {
+        width: 280px;
+    }
 }
 .item {
     width: 320px;
@@ -16,12 +19,21 @@
     user-select: none;
     //border: 1px solid black;
 
+    @if $PLATFORM == "mobile" {
+        width: 166px;
+        height: 114px;
+    }
+
     h2 {
         font-family: "Bebas Neue", sans-serif;
         font-size: 25px;
         line-height: 120%;
         color: #3877ee;
         margin: 0 0 15px 0;
+        @if $PLATFORM == "mobile" {
+            font-size: 16px;
+            font-weight: 400;
+        }
     }
 
     p {
@@ -30,6 +42,9 @@
         line-height: 30px;
         color: #42567a;
         margin: 0;
+        @if $PLATFORM == "mobile" {
+            font-size: 14px;
+        }
     }
 }
 .navButton {
@@ -46,8 +61,8 @@
     z-index: 10;
     background: white;
     box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.05),
-        0 10px 40px rgba(0, 0, 0, 0.1);
+        0 2px 5px rgba(0, 0, 0, 0.05),
+        0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .prev {

@@ -4,6 +4,10 @@
     height: 1080px;
     border-right: 1px solid rgba(66, 86, 122, 0.1);
     border-left: 1px solid rgba(66, 86, 122, 0.1);
+    border: 1px solid black;
 
-    //border: 1px solid black;
+    @if $PLATFORM == "mobile" {
+        width: 320px;
+        height: 568px;
+    }
 }

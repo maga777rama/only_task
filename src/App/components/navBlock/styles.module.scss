@@ -2,9 +2,17 @@
     position: absolute;
     width: 120px;
     height: 88px;
-    top: 697px;
     left: 80px;
-    //border: 1px solid black;
+    @if $PLATFORM == "desktop" {
+        top: 697px;
+    }
+
+    @if $PLATFORM == "mobile" {
+        width: 58px;
+        height: 49px;
+        bottom: 13px;
+        left: 20px;
+    }
 }
 
 .counter {
@@ -17,13 +25,12 @@
 }
 
 .buttons {
-    color: #5d5fef;
     position: absolute;
     bottom: 1px;
 
     button:first-child {
         transform: scaleX(-1);
-        margin-right: 20px;
+        margin-right: 8px;
     }
 
     button {
@@ -32,9 +39,15 @@
         border-radius: 50%;
         border: 1px solid #42567a80;
         background: white;
+        @if $PLATFORM == "mobile" {
+            width: 25px;
+            height: 25px;
+        }
 
         &:hover {
-            opacity: 0.5;
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.05),
+                0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
         &:disabled {

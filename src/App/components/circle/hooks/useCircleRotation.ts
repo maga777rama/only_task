@@ -1,46 +1,46 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { CurrentInterval } from "@/App/context";
 
 export const useCircleRotation = (totalPoints: number) => {
-    const rotateAngle = useRef<number>(0); // текущий угол поворота (положение) всей окружности
     const circleRef = useRef<HTMLDivElement>(null);
     const pointsRef = useRef<HTMLDivElement[]>([]);
     const { curInt, setCurInt } = useContext(CurrentInterval);
 
     const rotateCircle = (index: number) => {
+        if (!circleRef.current) return;
+
         setCurInt(index);
 
-        // текущее положение вершины (против часовой стрелки)
-        const targetAngle = -(360 / totalPoints) * index;
+        // текущий угол поворота
+        const currentRotation = gsap.getProperty(
+            circleRef.current,
+            "rotate",
+        ) as number;
+        const targetAngle = (360 / totalPoints) * index;
 
-        // положение вершины с учетом направления вращения (вправо/влево)
-        const targetRotateAngle = -(targetAngle <= -180
-            ? targetAngle + 360
-            : targetAngle);
+        // нахъодим рахницу углов
+        let delta = targetAngle - (currentRotation % 360);
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
 
-        // угол и направление вращения вершины на которой сработал обработчик
-        let delta = targetRotateAngle - rotateAngle.current;
-        if (delta >= 180) {
-            delta -= 360;
-        }
-        if (delta < -180) {
-            delta += 360;
-        }
+        // Останавливаем старые анимации
+        gsap.killTweensOf(circleRef.current);
+        gsap.killTweensOf(pointsRef.current);
 
-        gsap.to(circleRef.current, { rotate: `+=${delta}`, duration: 1 });
+        // вращаем круг
+        gsap.to(circleRef.current, {
+            rotate: `${currentRotation + delta}`,
+            duration: 1,
+            ease: "power2.inOut",
+        });
 
-        // обновляем текущее положение окружности
-        rotateAngle.current =
-            rotateAngle.current + delta <= -180
-                ? rotateAngle.current + delta + 360
-                : rotateAngle.current + delta;
-
-        // выставляем цифры на окружности в правильное положение после вращения
+        // чтобы цифры внутри кружочков правильно отображались
         pointsRef.current.forEach((el) => {
             gsap.to(el, {
                 rotate: `-=${delta}`,
                 duration: 1,
+                ease: "power2.inOut",
             });
         });
     };
@@ -49,5 +49,54 @@ export const useCircleRotation = (totalPoints: number) => {
         rotateCircle(curInt);
     }, [curInt]);
 
-    return { curInt, circleRef, pointsRef, rotateCircle };
+    return { circleRef, pointsRef };
 };
+
+//
+// const rotateCircle = (index: number) => {
+//     if (!circleRef.current || !pointsRef.current[curInt] || !pointsRef.current[index]) return;
+//
+//     const prevEl = pointsRef.current[curInt]; // Старая активная вершина
+//     const nextEl = pointsRef.current[index]; // Новая активная вершина
+//
+//     setCurInt(index);
+//
+//     const currentRotation = gsap.getProperty(circleRef.current, "rotate") as number;
+//     const targetAngle = (360 / totalPoints) * index;
+//
+//     let delta = targetAngle - (currentRotation % 360);
+//     if (delta > 180) delta -= 360;
+//     if (delta < -180) delta += 360;
+//
+//     gsap.killTweensOf(circleRef.current);
+//     gsap.killTweensOf(pointsRef.current);
+//     gsap.killTweensOf(prevEl);
+//     gsap.killTweensOf(nextEl);
+//
+//     gsap.to(circleRef.current, {
+//         rotate: `${currentRotation + delta}`,
+//         duration: 1,
+//         ease: "power2.inOut",
+//     });
+
+//     pointsRef.current.forEach((el) => {
+//         gsap.to(el, {
+//             rotate: `-=${delta}`,
+//             duration: 1,
+//             ease: "power2.inOut",
+//         });
+//     });
+//
+//     gsap.to(prevEl, {
+//         scale: 0.5,
+//         opacity: 0.5,
+//         duration: 0.5,
+//         ease: "power2.out",
+//     });
+//
+//     gsap.fromTo(
+//         nextEl,
+//         { scale: 0.5, opacity: 0.5 },
+//         { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }
+//     );
+// };

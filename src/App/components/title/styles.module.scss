@@ -4,7 +4,6 @@
     align-items: center;
     position: absolute;
     top: 170px;
-
     font-weight: 700;
     font-family: "PT Sans", sans-serif;
     font-size: 56px;
@@ -12,10 +11,23 @@
     color: #42567a;
     //border: 1px solid #42567a;
     width: 431px;
+
+    @if $PLATFORM == "mobile" {
+        align-self: start;
+        top: 59px;
+        left: 20px;
+        font-size: 20px;
+    }
 }
 
 .title {
     margin-left: 78px;
     width: 353px;
     height: 134px;
+
+    @if $PLATFORM == "mobile" {
+        margin-left: 0;
+        width: 123px;
+        height: 48px;
+    }
 }

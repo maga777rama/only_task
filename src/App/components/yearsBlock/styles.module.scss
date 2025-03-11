@@ -9,11 +9,22 @@
     line-height: 160px;
     font-family: "PT Sans", sans-serif;
     font-weight: 700;
-
     letter-spacing: -2%;
+
+    @if $PLATFORM == "mobile" {
+        top: calc(163px);
+        left: calc(20px);
+        width: 273px;
+        height: 73px;
+        font-size: 56px;
+    }
+
     &__start {
         color: #5d5fef;
         margin-right: auto;
+        @if $PLATFORM == "mobile" {
+            color: #3877ee;
+        }
     }
 
     &__end {

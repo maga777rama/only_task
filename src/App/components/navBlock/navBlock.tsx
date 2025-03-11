@@ -23,13 +23,13 @@ export const NavBlock = () => {
                     disabled={curInt === 0}
                     onClick={() => handleClick("prev")}
                 >
-                    <NavButton stroke={"#3877EE"} strokeWidth={"2"} />
+                    <NavButton stroke={"#42567A"} strokeWidth={"2"} />
                 </button>
                 <button
                     onClick={() => handleClick("next")}
                     disabled={curInt === blockCount - 1}
                 >
-                    <NavButton stroke={"#3877EE"} strokeWidth={"2"} />
+                    <NavButton stroke={"#42567A"} strokeWidth={"2"} />
                 </button>
             </div>
         </div>
