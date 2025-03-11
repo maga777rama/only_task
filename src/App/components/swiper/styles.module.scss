@@ -3,13 +3,15 @@
 
 .container {
     position: absolute;
-    bottom: 104px;
+    top: 841px;
     width: 1280px;
-    margin: 0 20px;
-    //border: 1px solid black;
+    margin: 0 80px;
     @if $PLATFORM == "mobile" {
         width: 280px;
+        top: 313px;
+        margin: 0 20px;
     }
+    padding-bottom: 20px;
 }
 .item {
     width: 320px;
@@ -21,7 +23,8 @@
 
     @if $PLATFORM == "mobile" {
         width: 166px;
-        height: 114px;
+        height: 255px;
+        //height: 114px;
     }
 
     h2 {
@@ -44,6 +47,7 @@
         margin: 0;
         @if $PLATFORM == "mobile" {
             font-size: 14px;
+            line-height: 145%;
         }
     }
 }

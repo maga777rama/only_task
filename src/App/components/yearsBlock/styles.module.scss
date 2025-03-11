@@ -12,11 +12,12 @@
     letter-spacing: -2%;
 
     @if $PLATFORM == "mobile" {
-        top: calc(163px);
-        left: calc(20px);
         width: 273px;
         height: 73px;
+        top: 163px;
+        left: 20px;
         font-size: 56px;
+        line-height: 100%;
     }
 
     &__start {

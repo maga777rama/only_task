@@ -5,6 +5,7 @@ import ReactRefreshTypeScript from "react-refresh-typescript";
 
 export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     const isDev = options.mode === "development";
+    console.log(options.platform);
 
     const svgrLoader = {
         test: /\.svg$/i,
@@ -54,7 +55,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
             {
                 loader: "sass-loader",
                 options: {
-                    additionalData: `$PLATFORM: ${JSON.stringify(process.env.__PLATFORM__ || "mobile")};`,
+                    additionalData: `$PLATFORM: ${JSON.stringify(options.platform || "desktop")};`,
                 },
             },
         ],

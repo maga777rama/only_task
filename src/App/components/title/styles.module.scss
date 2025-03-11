@@ -1,7 +1,9 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @if $PLATFORM == "desktop" {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     position: absolute;
     top: 170px;
     font-weight: 700;
@@ -13,7 +15,7 @@
     width: 431px;
 
     @if $PLATFORM == "mobile" {
-        align-self: start;
+        width: 123px;
         top: 59px;
         left: 20px;
         font-size: 20px;

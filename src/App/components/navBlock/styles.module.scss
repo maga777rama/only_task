@@ -3,6 +3,7 @@
     width: 120px;
     height: 88px;
     left: 80px;
+    z-index: 999;
     @if $PLATFORM == "desktop" {
         top: 697px;
     }
@@ -22,6 +23,9 @@
     line-height: 100%;
     letter-spacing: 0;
     color: #42567a;
+    @if $PLATFORM == "mobile" {
+        font-size: 14px;
+    }
 }
 
 .buttons {

@@ -1,12 +1,13 @@
 import data from "~public/staticFiles/events.json";
 import * as styles from "./styles.module.scss";
-import { SwiperItem } from "./SwiperItem";
+import { SwiperItem } from "./components/SwiperItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "./components/paginationStyles.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import NavBut from "~public/staticFiles/navButton.svg";
 import { CurrentInterval } from "@/App/context";
@@ -44,9 +45,13 @@ export const SwiperBlock = () => {
             <div ref={containerRef}>
                 <Swiper
                     direction={"horizontal"}
-                    pagination={{
-                        clickable: true,
-                    }}
+                    pagination={
+                        __PLATFORM__ === "desktop"
+                            ? false
+                            : {
+                                  clickable: true,
+                              }
+                    }
                     modules={[FreeMode, Navigation, Pagination]}
                     freeMode={true}
                     slidesPerView={"auto"}

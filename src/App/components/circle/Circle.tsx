@@ -7,9 +7,9 @@ import data from "~public/staticFiles/events.json";
 
 export const Circle = () => {
     const { curInt, setCurInt } = useContext(CurrentInterval);
-    const totalPoints = 6;
+    const totalPoints = data.dates.length;
     const { circleRef, pointsRef } = useCircleRotation(totalPoints);
-    console.log(data.dates[2].category);
+
     return (
         <div className={styles.container} ref={circleRef}>
             {Array.from({ length: totalPoints }).map((_, index) => {
@@ -24,11 +24,11 @@ export const Circle = () => {
                                     pointsRef.current[index] = el;
                                 }
                             }}
-                            className={`${styles.point}${curInt === index ? "__active" : ""}`}
+                            className={`${curInt === index ? styles.point__active : styles.point}`}
                             style={{ transform: `translate(${x}px, ${y}px)` }}
                             onClick={() => setCurInt(index)}
                         >
-                            <div> {index + 1}</div>
+                            {index + 1}
                             {index === curInt && (
                                 <span className={styles.category}>
                                     {data.dates[index].category}

@@ -27,7 +27,7 @@ export default (env: IEnvVariables) => {
         port: env.port ?? 3000,
         mode: env.mode ?? "development",
         paths,
-        platform: env.platform ?? "mobile",
+        platform: env.platform ?? "desktop",
     });
 
     return config;
