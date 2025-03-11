@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    position: absolute;
+    top: calc(50% - 60px - 95px);
+    left: calc(50% - 486.5px);
+    width: 973px;
+    height: 160px;
+    font-size: 200px;
+    line-height: 160px;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+
+    letter-spacing: -2%;
+    &__start {
+        color: #5d5fef;
+        margin-right: auto;
+    }
+
+    &__end {
+        color: #ef5da8;
+    }
+}
