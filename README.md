@@ -3,7 +3,7 @@
 
 Клонируем репозиторий
 ```
-git clone <ссылка на репозиторий>
+git clone https://github.com/maga777rama/only_task
 ```
 
 Устанавливаем зависимости
@@ -11,16 +11,16 @@ git clone <ссылка на репозиторий>
 npm install
 ```
 
-
 Собираем проект:
 
 1. Десктопная версия
 ```
-webpack --env mode=production --env platform=desktop
+npm run build:desktop
 ```
 
 2. Мобильная версия
 ```
-webpack --env mode=production --env platform=mobile
+npm run build:mobile
 ```
 
+После окончания сборки появится папка `build`, в ней находим файл `index.html`, открываем его в браузере
